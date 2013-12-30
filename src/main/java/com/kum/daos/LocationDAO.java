@@ -1,11 +1,13 @@
 package com.kum.daos;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.metamodel.EntityType;
 
 import com.kum.model.Location;
@@ -31,7 +33,7 @@ public class LocationDAO {
 	}
 
 	public Location findByID(Location obj) throws SQLException {
-		if ((Integer)obj.getId() == null) {
+		if ((Long)obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
 		EntityManagerFactory emf =   Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -58,4 +60,14 @@ public class LocationDAO {
 		return ll;
 	}
 
+	@SuppressWarnings("unchecked")
+	public Collection<Location> findAllLocations() {
+		EntityManagerFactory emf =   Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    	EntityManager em = emf.createEntityManager();
+	    Query query = em.createQuery("SELECT e FROM Location e");
+		Collection<Location> locations = (Collection<Location>) query.getResultList();
+		em.close();
+		emf.close();
+	    return locations;
+	  }
 }

@@ -12,9 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class Location implements Serializable {
 
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
+	@Id
+	private long id;
 	private String description;
 	@OneToMany(mappedBy = "location")
 	private java.util.List<Device> devices = new java.util.ArrayList<Device>();
@@ -25,11 +26,11 @@ public class Location implements Serializable {
 		super();
 	}
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

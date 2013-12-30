@@ -31,7 +31,7 @@ public class DeviceDAO {
 	}
 
 	public Device findByID(Device obj) throws SQLException {
-		if ((Integer)obj.getId() == null) {
+		if ((Long)obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
 		
