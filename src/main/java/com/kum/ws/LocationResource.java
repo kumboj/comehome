@@ -27,17 +27,24 @@ public class LocationResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("new/{description}")
-	public void setLocation(@PathParam("description") String description
-			) throws SQLException {
+	public void setLocation(@PathParam("description") String description) throws SQLException {
 		LocationDAO daoLocation = new LocationDAO();
-//		System.out.println(id);
-		System.out.println(description);
+//		System.out.println(description);
 		Location newLocation = new Location();
-//		newLocation.setId(id);
 		newLocation.setDescription(description);
 		daoLocation.create(newLocation);
 	}
 
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Path("delete/{id}")
+	public void deleteLocation(@PathParam("id") Long id) throws SQLException {
+		LocationDAO daoLocation = new LocationDAO();
+		Location delLocation = new Location();
+		delLocation.setId(id);
+		daoLocation.removeLocation(delLocation);
+	}
+	
 	//
 	// @GET
 	// @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
