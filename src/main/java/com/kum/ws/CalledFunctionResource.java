@@ -10,22 +10,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.kum.model.Location;
-
-//@Path("/device")
-@Path("/location/{location: [0-9]* }/device")
-public class DeviceResource {
+@Path("/CalledFunction")
+public class CalledFunctionResource {
 
 	@GET
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<Location> get(@PathParam("location") Long location){
 		Location test = new Location();
 		test.setId(1);
-		test.setDescription("defaultDevice");
+		test.setDescription("default");
 		System.out.println(location);
 		ArrayList<Location> list = new ArrayList<Location>();
 		list.add(test);
 		return list;
 	}
-	
 	
 }
