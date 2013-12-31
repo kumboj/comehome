@@ -61,7 +61,7 @@ objEntityManagerFactory.close();
 
 private Function setFunction(String description) {
 Function newFunction = new Function();
-newFunction.setFunctionDescription(description);
+newFunction.setName(description);
 return newFunction;
 }
 

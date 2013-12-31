@@ -13,28 +13,28 @@ public class Function implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
-	private String functionDescription;
+	private long id;
+	private String name;
 	private static final long serialVersionUID = 1L;
 
 	public Function() {
 		super();
 	}
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getFunctionDescription() {
-		return this.functionDescription;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setFunctionDescription(String functionDescription) {
-		this.functionDescription = functionDescription;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -10,13 +10,13 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.metamodel.EntityType;
 
-import com.kum.model.Device;
+import com.kum.model.Function;
 
-public class DeviceDAO {
+public class FunctionDAO {
 
 	private static final String PERSISTENCE_UNIT_NAME = "JPAEclipseLinkDemoPU";
 
-	public Device create(Device obj) throws SQLException {
+	public Function create(Function obj) throws SQLException {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
@@ -31,7 +31,7 @@ public class DeviceDAO {
 		return obj;
 	}
 
-	public Device findByID(Device obj) throws SQLException {
+	public Function findByID(Function obj) throws SQLException {
 		if ((Long) obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
@@ -40,7 +40,7 @@ public class DeviceDAO {
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
-		obj = em.find(Device.class, obj.getId());
+		obj = em.find(Function.class, obj.getId());
 
 		em.close();
 		emf.close();
@@ -62,18 +62,18 @@ public class DeviceDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Device> findAllDevices() {
+	public Collection<Function> findAllFunctions() {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT e FROM Device e");
-		Collection<Device> devices = (Collection<Device>) query.getResultList();
+		Query query = em.createQuery("SELECT e FROM Function e");
+		Collection<Function> functions = (Collection<Function>) query.getResultList();
 		em.close();
 		emf.close();
-		return devices;
+		return functions;
 	}
 
-	public void removeDevice(Device obj) throws SQLException {
+	public void removeFunction(Function obj) throws SQLException {
 		if ((Long) obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
@@ -83,7 +83,7 @@ public class DeviceDAO {
 
 		// fetch entity
 		em.getTransaction().begin();
-		Device toDelete = em.find(Device.class, obj.getId());
+		Function toDelete = em.find(Function.class, obj.getId());
 		// remove entity
 		em.remove(toDelete);
 		em.getTransaction().commit();
