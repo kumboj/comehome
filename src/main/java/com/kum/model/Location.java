@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @Entity
 public class Location implements Serializable {
@@ -33,7 +34,6 @@ public class Location implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	public String getDescription() {
 		return this.description;
 	}
@@ -41,7 +41,7 @@ public class Location implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	@XmlTransient
 	public java.util.List<Device> getDevices() {
 		return devices;
 	}

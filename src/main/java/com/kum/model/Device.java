@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @Entity
 public class Device implements Serializable {
@@ -44,7 +45,7 @@ public class Device implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	@XmlTransient
 	public Location getLocation() {
 		return this.location;
 	}

@@ -29,7 +29,7 @@ public class DeviceResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("new/{name}")
-	public void setLocation(@PathParam("name") String name)
+	public void setDevice(@PathParam("name") String name)
 			throws SQLException {
 		DeviceDAO daoDevice = new DeviceDAO();
 		// System.out.println(description);

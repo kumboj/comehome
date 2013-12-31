@@ -29,7 +29,7 @@ public class FunctionResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("new/{name}")
-	public void setLocation(@PathParam("name") String name)
+	public void setFunction(@PathParam("name") String name)
 			throws SQLException {
 		FunctionDAO daoFunction = new FunctionDAO();
 		// System.out.println(name);
