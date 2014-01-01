@@ -10,13 +10,13 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.metamodel.EntityType;
 
-import com.kum.model.Function;
+import com.kum.model.CalledFunction;
 
-public class FunctionDAO {
+public class CalledFunctionDAO {
 
 	private static final String PERSISTENCE_UNIT_NAME = "JPAEclipseLinkDemoPU";
 
-	public Function create(Function obj) throws SQLException {
+	public CalledFunction create(CalledFunction obj) throws SQLException {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
@@ -31,7 +31,7 @@ public class FunctionDAO {
 		return obj;
 	}
 
-	public Function findByID(Function obj) throws SQLException {
+	public CalledFunction findByID(CalledFunction obj) throws SQLException {
 		if ((Long) obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
@@ -40,7 +40,7 @@ public class FunctionDAO {
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
-		obj = em.find(Function.class, obj.getId());
+		obj = em.find(CalledFunction.class, obj.getId());
 
 		em.close();
 		emf.close();
@@ -62,18 +62,18 @@ public class FunctionDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Function> findAllFunctions() {
+	public Collection<CalledFunction> findAllCalledFunctions() {
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT e FROM Function e");
-		Collection<Function> functions = (Collection<Function>) query.getResultList();
+		Query query = em.createQuery("SELECT e FROM CalledFunction e");
+		Collection<CalledFunction> calledFunctions = (Collection<CalledFunction>) query.getResultList();
 		em.close();
 		emf.close();
-		return functions;
+		return calledFunctions;
 	}
 
-	public Function removeFunction(Function obj) throws SQLException {
+	public void removeCalledFunction(CalledFunction obj) throws SQLException {
 		if ((Long) obj.getId() == null) {
 			throw new SQLException("No ID!");
 		}
@@ -83,14 +83,13 @@ public class FunctionDAO {
 
 		// fetch entity
 		em.getTransaction().begin();
-		Function toDelete = em.find(Function.class, obj.getId());
+		CalledFunction toDelete = em.find(CalledFunction.class, obj.getId());
 		// remove entity
 		em.remove(toDelete);
 		em.getTransaction().commit();
 
 		em.close();
 		emf.close();
-		return toDelete;
 
 	}
 }

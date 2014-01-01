@@ -31,12 +31,12 @@ objEntityManager.persist(radioAn);
 
 Device wohnzimmerBeleuchtung = new Device();
 wohnzimmerBeleuchtung.setName("Wohnzimmerbeleuchtung");
-wohnzimmerBeleuchtung.getFunctionList().add(lichtAn);
+wohnzimmerBeleuchtung.getFunctions().add(lichtAn);
 objEntityManager.persist(wohnzimmerBeleuchtung);
 
 Device musikAnlage = new Device();
 musikAnlage.setName("Musikanlage");
-musikAnlage.getFunctionList().add(radioAn);
+musikAnlage.getFunctions().add(radioAn);
 objEntityManager.persist(musikAnlage);
 
 Location wohnort = new Location();

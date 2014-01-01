@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 public class Location implements Serializable {
 
-	
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Id
 	private long id;
 	private String description;
+	
 	@OneToMany(mappedBy = "location")
 	private java.util.List<Device> devices = new java.util.ArrayList<Device>();
 

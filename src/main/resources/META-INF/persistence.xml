@@ -21,5 +21,6 @@
 		<class>com.kum.model.Location</class>
 		<class>com.kum.model.Device</class>
 		<class>com.kum.model.Function</class>
+		<class>com.kum.model.CalledFunction</class>
 	</persistence-unit>
 </persistence>

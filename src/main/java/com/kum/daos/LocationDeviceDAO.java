@@ -19,6 +19,7 @@ public class LocationDeviceDAO {
 		EntityManager em = emf.createEntityManager();
 
 		em.getTransaction().begin();
+		
 		em.persist(device);
 
 		location.getDevices().add(device);

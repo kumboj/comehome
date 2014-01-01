@@ -22,8 +22,9 @@ public class Device implements Serializable {
 	@ManyToOne
 	private Location location;
 
-	@OneToMany
-	private java.util.List<Function> functionList = new java.util.ArrayList<Function>();
+	@OneToMany(mappedBy = "device")
+	private java.util.List<Function> functions = new java.util.ArrayList<Function>();
+	
 	private static final long serialVersionUID = 1L;
 
 	public Device() {
@@ -53,13 +54,13 @@ public class Device implements Serializable {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-
-	public java.util.List<Function> getFunctionList() {
-		return this.functionList;
+	@XmlTransient
+	public java.util.List<Function> getFunctions() {
+		return this.functions;
 	}
 
-	public void setFunctionList(java.util.List<Function> functionList) {
-		this.functionList = functionList;
+	public void setFunctions(java.util.List<Function> functions) {
+		this.functions = functions;
 	}
 
 }

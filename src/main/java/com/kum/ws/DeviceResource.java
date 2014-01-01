@@ -12,8 +12,6 @@ import javax.ws.rs.core.MediaType;
 import com.kum.daos.DeviceDAO;
 import com.kum.model.Device;
 
-//@Path("/location/{location: [0-9]* }/device")
-
 @Path("/device")
 public class DeviceResource {
 
@@ -29,23 +27,24 @@ public class DeviceResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("new/{name}")
-	public void setDevice(@PathParam("name") String name)
+	public Device setDevice(@PathParam("name") String name)
 			throws SQLException {
 		DeviceDAO daoDevice = new DeviceDAO();
-		// System.out.println(description);
 		Device newDevice = new Device();
 		newDevice.setName(name);
 		daoDevice.create(newDevice);
+		return newDevice;
 	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("delete/{id}")
-	public void deleteDevice(@PathParam("id") Long id) throws SQLException {
+	public Device deleteDevice(@PathParam("id") Long id) throws SQLException {
 		DeviceDAO daoDevice = new DeviceDAO();
 		Device delDevice = new Device();
 		delDevice.setId(id);
 		daoDevice.removeDevice(delDevice);
+		return delDevice;
 	}
 
 }

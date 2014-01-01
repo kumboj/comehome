@@ -9,7 +9,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.kum.daos.CalledFunctionDAO;
 import com.kum.daos.FunctionDAO;
+import com.kum.model.CalledFunction;
 import com.kum.model.Function;
 
 //@Path("/location/{location: [0-9]* }/device")
@@ -29,25 +31,47 @@ public class FunctionResource {
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("new/{name}")
-	public void setFunction(@PathParam("name") String name)
+	public Function setFunction(@PathParam("name") String name)
 			throws SQLException {
 		FunctionDAO daoFunction = new FunctionDAO();
-		// System.out.println(name);
 		Function newFunction = new Function();
 		newFunction.setName(name);
 		daoFunction.create(newFunction);
+		return newFunction;
 	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	@Path("delete/{id}")
-	public void deleteFunction(@PathParam("id") Long id) throws SQLException {
+	public Function deleteFunction(@PathParam("id") Long id) throws SQLException {
 		FunctionDAO daoFunction = new FunctionDAO();
 		Function delFunction = new Function();
 		delFunction.setId(id);
 		daoFunction.removeFunction(delFunction);
+		return delFunction;
+	}
+	
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Path("{name}")
+	public CalledFunction callAFunction(@PathParam("name") String name) throws SQLException {
+		CalledFunctionDAO daoCalledFunction = new CalledFunctionDAO();
+		CalledFunction newCalledFunction = new CalledFunction();
+		newCalledFunction.setName(name);
+		daoCalledFunction.create(newCalledFunction);
+		return newCalledFunction;
 	}
 
+	@GET
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Path("finish/{id}")
+	public CalledFunction finishFunction(@PathParam("id") Long id) throws SQLException {
+		CalledFunctionDAO daoCalledFunction = new CalledFunctionDAO();
+		CalledFunction finCalledFunction = new CalledFunction();
+		finCalledFunction.setId(id);
+		daoCalledFunction.removeCalledFunction(finCalledFunction);
+		return finCalledFunction;
+	}
 }
 
 //@Path("/location/{location: [0-9]* }/device/{device: [0-9]* }/function")
